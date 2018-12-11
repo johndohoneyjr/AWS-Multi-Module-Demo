@@ -31,7 +31,7 @@ resource "aws_instance" "tf_server" {
     ami = "${data.aws_ami.server_ami.id}"
     tags {
         Name = "tf_server-${count.index+1}",
-        Owner = "Testing Owner Tag"}
+        Owner = "Testing Owner Tag"
     }
     key_name = "${var.key_name}"
     vpc_security_group_ids = ["${var.security_group}"]
