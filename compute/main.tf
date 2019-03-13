@@ -31,7 +31,7 @@ resource "aws_instance" "tf_server" {
     instance_type = "${var.instance_type}"
     ami = "${data.aws_ami.server_ami.id}"
     tags {
-        Name = "tf_server-${count.index+1}"
+##        Name = "tf_server-${count.index+1}"
 ##        Owner = "Testing-Owner-Tag-${count.index+1}"
     }
     key_name = "${var.key_name}"
