@@ -1,7 +1,8 @@
 ## -- Compute/main.tf
 
 data "aws_ami" "server_ami" {
-    most_recent= true
+    most_recent = true
+    owners      = ["self"]
     filter {
         name = "owner-alias"
         values = ["amazon"]
@@ -31,7 +32,7 @@ resource "aws_instance" "tf_server" {
     ami = "${data.aws_ami.server_ami.id}"
     tags {
         Name = "tf_server-${count.index+1}"
-        Owner = "Testing-Owner-Tag-${count.index+1}"
+##        Owner = "Testing-Owner-Tag-${count.index+1}"
     }
     key_name = "${var.key_name}"
     vpc_security_group_ids = ["${var.security_group}"]
