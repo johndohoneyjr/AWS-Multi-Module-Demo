@@ -10,7 +10,7 @@ provider "aws" {
 #   } 
 #}
 
-data "terraform_remote_state" "foo" {
+data "terraform_remote_state" "networking" {
   backend = "remote"
 
   config = {
