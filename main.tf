@@ -2,14 +2,6 @@ provider "aws" {
     region="${var.aws_region}"
 }
 
-#data "terraform_remote_state" "networking" 
-#{ 
-#  backend = "atlas" 
-#   config { 
-#     name = "johndohoneyjr/networking-partition" 
-#   } 
-#}
-
 data "terraform_remote_state" "networking" {
   backend = "remote"
 
