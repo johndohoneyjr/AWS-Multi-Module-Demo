@@ -8,7 +8,7 @@ data "terraform_remote_state" "networking" {
   config = {
     organization = "johndohoneyjr"
 
-    workspaces {
+    workspaces = {
       name = "networking-partition"
     }
   }
