@@ -30,7 +30,7 @@ resource "aws_instance" "tf_server" {
     count ="${var.instance_count}"
     instance_type = "${var.instance_type}"
     ami = "${data.aws_ami.server_ami.id}"
-    tags {
+    tags = {
         Name = "tf_server-${count.index+1}"
         Owner = "Owner-Tag-${count.index+1}"
     }
