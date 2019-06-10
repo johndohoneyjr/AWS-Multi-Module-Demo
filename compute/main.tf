@@ -20,7 +20,7 @@ data "template_file" "user-init" {
     count = 2
     template = "${file("${path.module}/userdata.tpl")}"
     
-    vars {
+    vars = {
         firewall_subnets = "${element(var.subnet_ips, count.index)}"
     }
 }
