@@ -2,12 +2,11 @@ provider "aws" {
     region="${var.aws_region}"
 }
 
-data "terraform_remote_state" "networking" 
-{ 
-  backend = "atlas" 
-   config { 
-     name = "johndohoneyjr/networking-partition" 
-   } 
+module "networking" {
+    source = "./networking"
+    vpc_cidr = "${var.vpc_cidr}"
+    public_cidrs = "${var.public_cidrs}"
+    accessip = "${var.accessip}"
 }
 
 module "compute" {
@@ -15,7 +14,7 @@ module "compute" {
     instance_count = "${var.instance_count}"
     key_name = "${var.key_name}"
     instance_type = "${var.server_instance_type}"
-    subnets = "${data.terraform_remote_state.networking.public_subnets}"
-    security_group = "${data.terraform_remote_state.networking.public_sg}"
-    subnet_ips = "${data.terraform_remote_state.networking.subnet_ips}"
+    subnets = "${module.networking.public_subnets}"
+    security_group = "${module.networking.public_sg}"
+    subnet_ips = "${module.networking.subnet_ips}"
 }
